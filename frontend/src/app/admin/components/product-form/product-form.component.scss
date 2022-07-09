@@ -1,0 +1,28 @@
+.input_field
+{
+	width: 100%;
+	height: 52px;
+	background: #f0f2f7;
+	border: none;
+	outline: none;
+	padding-left: 15px;
+}
+
+.input-group-addon {
+    border: none;
+}
+
+.save_button::after {
+    background: #1b1b1b;
+}
+
+.btn-align {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.my_select {
+	width: 100%;
+	height: 52px !important;
+}

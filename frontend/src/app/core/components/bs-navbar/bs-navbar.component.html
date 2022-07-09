@@ -1,0 +1,69 @@
+<header class="header">
+  <div class="header_container">
+    <div>
+      <div class="row">
+        <div class="col">
+          <div class="header_content d-flex flex-row align-items-center justify-content-start">
+            <div class="logo">
+              <a class="navbar-brand" href="/">
+                KalaKart
+              </a>
+            </div>
+            <nav class="main_nav">
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a routerLink="/products">Products</a></li>
+                <li><a routerLink="/contact-us">Contact</a></li>
+              </ul>
+            </nav>
+            <div class="header_extra ml-auto">
+              <div class="nav-account">
+                <ul>
+                  <ng-template #anonymousUser>
+                    <li><a class="account_a" routerLink="#" (click)="login()">Login</a></li>
+                  </ng-template>
+                  <li class="hassubs text-center" *ngIf="appUser; else anonymousUser">
+                    <a class="account_a" routerLink="#">{{ appUser.name }}</a>
+                    <ul>
+                      <li><a routerLink="/my/orders">My Orders</a></li>
+                      <li *ngIf="appUser.isAdmin"><a routerLink="/admin/orders">Manage Orders</a></li>
+                      <li *ngIf="appUser.isAdmin"><a routerLink="/admin/products">Manage Products</a></li>
+                      <li *ngIf="appUser.isAdmin"><a routerLink="/admin/contact-messages">View Messages</a></li>
+                      <li><a href="/" (click)="logout()">Log Out</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="shopping_cart">
+                <a routerLink="/shopping-cart">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px" y="0px" viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;"
+                    xml:space="preserve">
+                    <g>
+                      <path d="M440.1,422.7l-28-315.3c-0.6-7-6.5-12.3-13.4-12.3h-57.6C340.3,42.5,297.3,0,244.5,0s-95.8,42.5-96.6,95.1H90.3
+                      c-7,0-12.8,5.3-13.4,12.3l-28,315.3c0,0.4-0.1,0.8-0.1,1.2c0,35.9,32.9,65.1,73.4,65.1h244.6c40.5,0,73.4-29.2,73.4-65.1
+                      C440.2,423.5,440.2,423.1,440.1,422.7z M244.5,27c37.9,0,68.8,30.4,69.6,68.1H174.9C175.7,57.4,206.6,27,244.5,27z M366.8,462
+                      H122.2c-25.4,0-46-16.8-46.4-37.5l26.8-302.3h45.2v41c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h139.3v41
+                      c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z" />
+                    </g>
+                  </svg>
+                  <div><span class="cart-text">Cart</span> <span *ngIf="cart$ | async as cart">({{ cart.totalItemsCount
+                      }})</span>
+                  </div>
+                </a>
+              </div>
+              <div class="hamburger" (click)="changeMenuState()"><i [ngClass]="hamburgerMenuOpen ? 'fa fa-times' : 'fa fa-bars'" class="hamburger-icon" aria-hidden="true"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hamburger-menu" [ngStyle]="{'margin-top': hamburgerMenuOpen ? '0' : '-500px'}">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a routerLink="/products" (click)="hamburgerMenuOpen = false">Products</a></li>
+      <li><a routerLink="/contact-us" (click)="hamburgerMenuOpen = false">Contact</a></li>
+    </ul>
+  </div>
+</header>

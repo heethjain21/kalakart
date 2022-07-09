@@ -1,0 +1,23 @@
+<app-page-header [data]="headerData"></app-page-header>
+<div class="container mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders$ | async">
+        <td>{{ order.datePlaced | date : 'dd/MM/yy'}}</td>
+        <td>{{ order.amount.grandTotal | currency:'INR':true}}</td>
+        <td>{{ order.details.status}}</td>
+        <td>
+          <a [routerLink]="['/admin/orders/', order.$key]">View</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,41 @@
+.thumbnail { 
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-size: cover;
+}
+
+.card-title {
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.list-group-item {
+    font-size: 16px;
+}
+
+.row-item {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .items-footer {
+        text-align: center !important;
+    }
+    .row-item {
+        display: flex;
+        justify-content: center !important;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .shipping-details-container {
+        padding-right: 0;
+    }
+    
+    .amount-details-container {
+        padding-left: 0;
+    }
+}

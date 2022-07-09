@@ -1,0 +1,47 @@
+<app-page-header [data]="headerData"></app-page-header>
+<div class="container mt-3">
+  <div *ngIf="messages | async as messages">
+      <div>
+        <ul class="list-group list-group-flush">
+          <div class="row table-header mt-2">
+            <div class="col-md-2">
+              <b>Date/Time</b>
+            </div>
+            <div class="col-md-2">
+              <b>Name</b>
+            </div>
+            <div class="col-md-2">
+              <b>Phone No</b>
+            </div>
+            <div class="col-md-2">
+              <b>Email</b>
+            </div>
+            <div class="col-md-4 justify-content-center">
+              <b>Message</b>
+            </div>
+          </div>
+          <hr>
+          <li *ngFor="let message of messages">
+            <div class="row list-item-div">
+              <div class="col-6 col-sm-6 col-md-2 left-padd-sm">
+                <p class="item-details">Date/Time &nbsp;</p>{{ message.dateTime | date: 'dd/MM/yy hh:mm a'}}
+              </div>
+              <div class="col-6 col-sm-6 col-md-2 right-padd-sm">
+                <p class="item-details">Name &nbsp;</p>{{ message.name }}
+              </div>
+              <div class="col-6 col-sm-6 col-md-2 mt-2 left-padd-sm word-letter-break">
+                <p class="item-details">Phone No &nbsp;</p>{{ message.phoneNo }}
+              </div>
+              <div class="col-6 col-sm-6 col-md-2 mt-2 right-padd-sm word-letter-break">
+                <p class="item-details">Email &nbsp;</p>{{ message.email }}
+              </div>
+              <div class="col-12 col-sm-12 col-md-4 mt-2 left-padd-sm right-padd-sm">
+                <p class="item-details">Message &nbsp;</p>{{ message.message }}
+              </div>
+            </div>
+            <hr>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<app-page-header [data]="headerData"></app-page-header>
+<div class="container">
+  <div class="card">
+    <div class="row" *ngIf="cart$ | async as cart">
+      <div class="col-md-6 shipping-details-container">
+        <div class="card-body">
+          <p class="card-title">Shipping Details</p>
+          <div class="summary-header">
+            <p class="card-text">Your products will be shipped to:</p>
+            <a [routerLink]="['/shipping-details']">Edit</a>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li>
+              <div class="mb-2">{{ shippingDetails.name }}</div>
+              <div class="mb-2">{{ shippingDetails.phoneNo }}</div>
+            </li>
+            <hr>
+            <li>
+              <div class="mb-2 mt-2">{{ shippingDetails.addressLine1 }}</div>
+              <div class="mb-2">{{ shippingDetails.addressLine2 }}</div>
+              <div class="mb-2">{{ shippingDetails.city }}, {{ shippingDetails.state }}, {{ shippingDetails.country }}
+              </div>
+              <div class="">{{ shippingDetails.zipCode }}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 shopping-cart-container">
+        <div class="card-body">
+          <p class="card-title">Shopping Cart</p>
+          <div class="summary-header">
+            <p class="card-text">You have {{ cart.totalItemsCount }} items in your shopping cart.</p>
+            <a [routerLink]="['/shopping-cart']">Edit</a>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li>
+              <div>
+                <div *ngFor="let item of cart.items" class="mb-2">
+                  {{ item.quantity }} x {{ item.title }}
+                  <div class="float-right">
+                    {{ item.totalPrice | currency:'INR':true }}
+                  </div>
+                </div>
+              </div>
+            </li>
+            <hr>
+            <li>
+              <div class="mt-2">
+                SubTotal
+                <div class="float-right">
+                  {{ amount.subTotal | currency:'INR':true }}
+                </div>
+              </div>
+              <div class="mt-2">
+                Shipping
+                <div class="float-right">
+                  {{ amount.shipping | currency:'INR':true }}
+                </div>
+              </div>
+              <div class="font-weight-bold mt-2">
+                GrandTotal
+                <div class="float-right">
+                  {{ amount.grandTotal | currency:'INR':true }}
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="btn-align-right">
+          <div class="button check_out_button" (click)="payAndConfirm()"
+            [ngStyle]="{'opacity' : orderValid == false ? 0.5 : 1, 'z-index': orderValid == false ? -1 : 1}">
+            <a routerLink="#">Pay and Confirm</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.table {
+    color: #333333;
+}
+
+.table th, 
+.table td {
+    padding: 1.25rem 0;
+}
+
+@media (max-width: 576px) {
+    .container {
+        margin-top: 1rem !important;
+    }
+}

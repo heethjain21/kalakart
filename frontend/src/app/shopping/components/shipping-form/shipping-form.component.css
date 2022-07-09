@@ -1,0 +1,25 @@
+.btn-align-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.contact_form label
+{
+	font-size: 14px;
+	font-weight: 400;
+	color: #6c6a74;
+}
+.contact_input
+{
+	width: 100%;
+	height: 52px;
+	background: #f0f2f7;
+	border: none;
+	outline: none;
+	padding-left: 15px;
+}
+
+.check_out_button::after {
+	background: #1b1b1b;
+}

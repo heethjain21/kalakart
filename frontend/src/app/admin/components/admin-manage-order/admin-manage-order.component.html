@@ -1,0 +1,18 @@
+<app-page-header [data]="headerData"></app-page-header>
+<div class="container mt-4">
+    <div class="heading mb-3">
+        <p class="order-status" style="font-size: 22px;"><b>Order Status:</b></p> &nbsp; &nbsp;
+        <select id="status" name="status" class="my_select" [ngModel]="order.details['status']"
+            (ngModelChange)="onChange($event)">
+            <option value="Placed">Placed</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Shipping">Shipping</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Out for Delivery">Out for Delivery</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+        &nbsp; <p class="order-status">on {{ orderStatusUpdatedOn }}</p>
+    </div>
+    <app-view-order [order]="order"></app-view-order>
+</div>

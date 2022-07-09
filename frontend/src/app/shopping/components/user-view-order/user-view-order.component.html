@@ -1,0 +1,11 @@
+<app-page-header [data]="headerData"></app-page-header>
+<div class="container mt-4">
+    <div class="heading mb-3">
+        <p class="order-status">Order Status: <strong>{{ orderStatus }}</strong> on {{ orderUpdatedOn }}</p>
+        <div class="button danger_button cancel_button" (click)="cancelOrder()"
+            *ngIf="orderStatus && (orderStatus !== 'Delivered' && orderStatus !== 'Cancelled' && orderStatus !== 'Shipped' && orderStatus !== 'Out for Delivery')">
+            <a routerLink="#">Request Order Cancellation</a>
+        </div>
+    </div>
+    <app-view-order [order]="order"></app-view-order>
+</div>
