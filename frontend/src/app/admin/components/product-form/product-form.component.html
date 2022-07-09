@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form #f="ngForm">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input #title="ngModel" [(ngModel)]="product.title" name="title" id="title" type="text" class="input_field"
+            required>
+          <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+            Title is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <div class="input-group">
+            <span class="input-group-addon">₹</span>
+            <input #price="ngModel" [(ngModel)]="product.price" name="price" id="price" type="number"
+              class="input_field" required [min]="0">
+          </div>
+          <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+            <div *ngIf="price.errors.required">Price is required.</div>
+            <div *ngIf="price.errors.min">Price should be 0 or higher.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <br>
+          <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="my_select"
+            required>
+            <option [ngValue]="null" *ngIf="product.category !== null" disabled selected hidden>Select Category</option>
+            <option *ngFor="let c of categories" [value]="c.$key">
+              {{ c.name }}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+            Category is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="availability">No of Available Units</label>
+          <div class="input-group">
+            <input #availability="ngModel" [(ngModel)]="product.availability" name="availability" id="availability"
+              type="number" class="input_field" required [min]="0">
+          </div>
+          <div class="alert alert-danger" *ngIf="availability.touched && availability.invalid">
+            <div *ngIf="availability.errors.required">No of available units is required.</div>
+            <div *ngIf="availability.errors.min">No of available units must be 0 or higher.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="imageUrl">Image URL</label>
+          <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" id="imageUrl" type="text"
+            class="input_field" required url (ngModelChange)="convertImageUrlToPreviewUrl($event)">
+          <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+            <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
+            <div *ngIf="imageUrl.errors.url">Please enter a valid URL.</div>
+          </div>
+        </div>
+        <div class="btn-align mt-2 mb-4">
+          <div class="button save_button" *ngIf="!f.valid" style="z-index: -1; opacity: 0.4">
+            <a routerLink="#">Save</a>
+          </div>
+          <div class="button save_button" (click)="save(f.value)" *ngIf="f.valid" style="z-index: 1">
+            <a routerLink="#">Save</a>
+          </div>
+          <div class="button danger_button" *ngIf="id" (click)="delete()">
+            <a routerLink="#">Delete</a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6 mt-5">
+      <product-card [product]="product" [show-actions]="false"></product-card>
+    </div>
+  </div>
+</div>

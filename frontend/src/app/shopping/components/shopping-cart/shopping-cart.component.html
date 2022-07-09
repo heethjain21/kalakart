@@ -1,0 +1,89 @@
+<app-page-header [data]="headerData"></app-page-header>
+<div class="container shopping-cart">
+  <div *ngIf="cart$ | async as cart">
+    <div class="card-body">
+      <p>
+        You have {{ cart.totalItemsCount }} items in your shopping cart.
+      </p>
+    </div>
+
+    <div class="">
+      <div class="top-row">
+
+      </div>
+      <div>
+        <ul class="list-group list-group-flush">
+          <div class="row table-header">
+            <div class="col-md-3 row-item justify-content-start px-5">
+              Image
+            </div>
+            <div class="col-md-4 row-item justify-content-start">
+              Item Name
+            </div>
+            <div class="col-md-1 row-item mt-2 px-4 justify-content-center">
+              Price
+            </div>
+            <div class="col-md-3 row-item mt-2 justify-content-center px-4">
+              Quantity
+            </div>
+            <div class="col-md-1 row-item mt-2 px-4">
+              Total
+            </div>
+          </div>
+          <hr>
+          <li *ngFor="let item of cart.items">
+            <div class="row list-item-div">
+              <div class="col-6 col-sm-6 col-md-3 row-item justify-content-start">
+                <div [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="thumbnail">
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4 row-item justify-content-start">
+                <div class="text-left">
+                  <b>{{ item.title }}</b>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-1 row-item justify-content-center mt-2">
+                <div class="item-details-container text-right">
+                  <p class="item-details">Price: &nbsp;</p>{{ item.price | currency:'INR':true }}
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-3 row-item justify-content-center mt-2">
+                <div>
+                  Availability: {{ getProductFromItem(item).availability }} units
+                  <product-quantity [product]="getProductFromItem(item)" [shopping-cart]="cart"></product-quantity>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-1 row-item mt-3">
+                <div class="item-details-container text-right">
+                  <p class="item-details">Total: &nbsp;</p>{{ item.totalPrice | currency:'INR':true }}
+                </div>
+              </div>
+            </div>
+            <hr>
+          </li>
+          <li>
+            <div class="items-footer text-right">
+              <p>Cart Subtotal: <b>{{ cart.totalPrice | currency:'INR':true }}</b></p>
+            </div>
+          </li>
+        </ul>
+        <hr>
+        <div class="btn-align mb-5">
+          <div class="button danger_button" *ngIf="cart.items.length" (click)="clearCart()">
+            <a routerLink="#">Empty Cart</a>
+          </div>
+          <div *ngIf="cart.items.length">
+            <ng-template #anonymousUser>
+              <div class="button cart_button" (click)="login()">
+                <a>Login</a>
+              </div>
+            </ng-template>
+            <div class="button cart_button" *ngIf="appUser; else anonymousUser" routerLink="/shipping-details">
+              <a>Continue</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

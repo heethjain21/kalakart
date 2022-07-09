@@ -1,0 +1,90 @@
+<div class="card">
+  <div class="row">
+    <div class="col-md-6 shipping-details-container">
+      <div class="card-body">
+        <div class="heading">
+          <h5 class="card-title">Shipping Details</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            {{ order.shipping.name }}
+            <br>
+            {{ order.shipping.phoneNo }}
+            <br> <br>
+            {{ order.shipping.addressLine1 }}
+            <br>
+            {{ order.shipping.addressLine2 }}
+            <br>
+            {{ order.shipping.city }}, {{ order.shipping.state }}, {{ order.shipping.country }}
+            <br>
+            {{ order.shipping.zipCode }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6 amount-details-container">
+      <div class="card-body">
+        <div class="heading">
+          <h5 class="card-title">Order Summary</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            SubTotal
+            <div class="float-right">
+              {{ order.amount.subTotal | currency:'INR':true }}
+            </div>
+          </li>
+          <li class="list-group-item">
+            Shipping
+            <div class="float-right">
+              {{ order.amount.shipping | currency:'INR':true }}
+            </div>
+          </li>
+          <li class="list-group-item font-weight-bold">
+            GrandTotal
+            <div class="float-right">
+              {{ order.amount.grandTotal | currency:'INR':true }}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card mt-4 mb-5">
+  <div class="card-body">
+    <div class="heading">
+      <h5 class="card-title">Item Details</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let item of order.items">
+        <div class="row list-item-div">
+          <div class="col-6 col-sm-6 col-md-4 row-item">
+            <div [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="thumbnail">
+            </div>
+          </div>
+          <div class="col-6 col-sm-6 col-md-3 row-item">
+            <div class="text-left">
+              <b>{{ item.title }}</b>
+            </div>
+          </div>
+          <div class="col-6 col-sm-6 col-md-3 row-item mt-2">
+            <div class="text-left">
+              {{ item.quantity }} x {{ item.price | currency:'INR':true }}
+            </div>
+          </div>
+          <div class="col-6 col-sm-6 col-md-2 row-item mt-2 justify-content-end">
+            <div class="text-right">
+              {{ item.totalPrice | currency:'INR':true }}
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item pb-0">
+        <div class="items-footer text-right">
+          Subtotal: <b>{{ order.amount.subTotal | currency:'INR':true }}</b>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

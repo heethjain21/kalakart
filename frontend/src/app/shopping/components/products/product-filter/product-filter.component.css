@@ -1,0 +1,21 @@
+
+.sticky-top { 
+  top: 80px;
+}
+
+.list-group {
+  background: #f0f2f7;
+}
+
+.list-group-item-action,
+.list-group-item-action:active {
+  padding: 20px;
+  color: #495057;
+}
+
+
+.active,
+.list-group-item-action:focus, 
+.list-group-item-action:hover {
+  background: #dfe1e7 !important;
+}

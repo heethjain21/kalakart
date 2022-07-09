@@ -1,0 +1,88 @@
+<app-page-header [data]="headerData"></app-page-header>
+<div class="container">
+  <div class="main">
+    <div class="card-body">
+      <form #f="ngForm">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="">Name*</label>
+            <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="contact_input"
+              placeholder="Name" required>
+            <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+              <div *ngIf="name.errors.required">Name is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Phone No*</label>
+            <input #phoneNo="ngModel" name="phoneNo" [(ngModel)]="shipping.phoneNo" type="text" class="contact_input"
+              placeholder="Phone No" required>
+            <div class="alert alert-danger" *ngIf="phoneNo.touched && phoneNo.invalid">
+              <div *ngIf="phoneNo.errors.required">Phone No is required.</div>
+            </div>
+          </div>
+
+        </div>
+        <label>Address *</label>
+        <div class="form-group">
+          <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text"
+            class="contact_input" placeholder="Address Line 1" required>
+          <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
+            <div *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input #addressLine2="ngModel" name="addressLine2" [(ngModel)]="shipping.addressLine2" type="text"
+            class="contact_input" placeholder="Address Line 2" required>
+          <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid">
+            <div *ngIf="addressLine2.errors.required">Address Line 2 is required.</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="">City*</label>
+            <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="contact_input"
+              placeholder="City" required>
+            <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+              <div *ngIf="city.errors.required">City is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">State*</label>
+            <input #state="ngModel" name="state" [(ngModel)]="shipping.state" type="text" class="contact_input"
+              placeholder="State" required>
+            <div class="alert alert-danger" *ngIf="state.touched && state.invalid">
+              <div *ngIf="state.errors.required">State is required.</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="">Country*</label>
+            <input #country="ngModel" name="country" [(ngModel)]="shipping.country" type="text" class="contact_input"
+              placeholder="Country" required>
+            <div class="alert alert-danger" *ngIf="country.touched && country.invalid">
+              <div *ngIf="country.errors.required">Country is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Zip Code*</label>
+            <input #zipCode="ngModel" name="zipCode" [(ngModel)]="shipping.zipCode" type="text" class="contact_input"
+              placeholder="Zip Code" required>
+            <div class="alert alert-danger" *ngIf="zipCode.touched && zipCode.invalid">
+              <div *ngIf="zipCode.errors.required">Zip Code is required.</div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-align-right mt-2 mb-4">
+          <div class="button check_out_button" (click)="updateShippingDetails()" *ngIf="!f.valid"
+            style="z-index: -1; opacity: 0.4">
+            <a routerLink="#">Check out</a>
+          </div>
+          <div class="button check_out_button" (click)="updateShippingDetails()" *ngIf="f.valid" style="z-index: 1">
+            <a routerLink="#">Check out</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.hamburger-menu {
+    background: white;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: all .20s;
+
+    li {
+        padding: 10px;
+
+        a {
+            color: black;
+            font-weight: 500;
+            font-size: 15px;
+        }
+    }
+}
+
+.hamburger-icon {
+    transition: all .30s; 
+}
